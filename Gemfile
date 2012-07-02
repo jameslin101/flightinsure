@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'awesome_print'
 gem 'twitter-bootstrap-rails'
 gem 'heroku'
+gem 'libxml-ruby'
 gem 'flightstats'
 #gem 'devise'
 
