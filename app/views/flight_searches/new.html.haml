@@ -1,18 +1,15 @@
 = form_for(@flight_search) do |f|
   %p
+    = f.label :flight_number, "Flight Number"
+    = f.text_field :flight_number
+  %p
     = f.label :departure_airport, "From"
     = f.text_field :departure_airport
   %p
     = f.label :arrival_airport, "To"
     = f.text_field :arrival_airport
   %p
-    = f.label :airline_code, "Airline Code"
-    = f.text_field :arrival_airport
-  %p
-    = f.label :flight_number, "Flight Number"
-    = f.text_field :flight_number
-  %p
-    = f.label :departure_time, "Departure Time"
+    = f.label :departure_time, "Departure Date"
     = f.date_select :departure_time
   %p
     = f.submit

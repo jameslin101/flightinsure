@@ -12,6 +12,8 @@ gem 'twitter-bootstrap-rails'
 gem 'heroku'
 gem 'libxml-ruby'
 gem 'flightstats'
+gem 'ruby-debug19'
+gem 'nokogiri'
 #gem 'devise'
 
 # Gems used only for assets and not required
