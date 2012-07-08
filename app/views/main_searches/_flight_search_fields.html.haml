@@ -1,0 +1,15 @@
+%fieldset
+  %p
+    = f.label :flight_number, "Flight Number"
+    = f.text_field :flight_number
+  %p
+    = f.label :departure_airport, "Origin"
+    = f.text_field :departure_airport
+  %p
+    = f.label :arrival_airport, "Destination"
+    = f.text_field :arrival_airport
+  %p
+    = f.label :departure_time, "Departure Date"
+    = f.date_select :departure_time
+  = f.hidden_field :_destroy
+  = link_to "remove", '#', class:"remove_flight_search"

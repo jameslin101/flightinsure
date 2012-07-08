@@ -1,7 +1,7 @@
 class FlightSearch < ActiveRecord::Base
   include FlightStats
-
-  attr_accessible :flight_number, :departure_airport, :arrival_airport, :departure_time
+  belongs_to :main_search
+  attr_accessible :main_search_id, :flight_number, :departure_airport, :arrival_airport, :departure_time
   
   
 end
