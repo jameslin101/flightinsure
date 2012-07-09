@@ -11,7 +11,59 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707220731) do
+ActiveRecord::Schema.define(:version => 20120709210656) do
+
+  create_table "airports", :force => true do |t|
+    t.string   "airport_code"
+    t.string   "city"
+    t.string   "country_code"
+    t.string   "iata_code"
+    t.string   "icao_code"
+    t.string   "name"
+    t.string   "state_code"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "type"
+  end
+
+  create_table "carriers", :force => true do |t|
+    t.string   "airline_code"
+    t.string   "iata_code"
+    t.string   "icao_code"
+    t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "type"
+  end
+
+  create_table "equipment", :force => true do |t|
+    t.string   "aircraft_type_code"
+    t.string   "aircraft_type_name"
+    t.boolean  "jet"
+    t.boolean  "regional"
+    t.boolean  "turboprop"
+    t.boolean  "wide_body"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "flight_legs", :force => true do |t|
+    t.boolean  "codeshare"
+    t.integer  "arrival_date_adjustment"
+    t.string   "arrival_terminal"
+    t.datetime "arrival_time"
+    t.integer  "departure_date_adjustment"
+    t.string   "departure_terminal"
+    t.datetime "departure_time"
+    t.integer  "distance_miles"
+    t.integer  "flight_duration_minutes"
+    t.integer  "layover_duration_minutes"
+    t.string   "wetlease_info"
+    t.integer  "flight_id_flight_number"
+    t.integer  "operator_flight_number"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "flight_searches", :force => true do |t|
     t.string   "departure_airport"

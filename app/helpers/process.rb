@@ -14,7 +14,7 @@ module Process
     qr = Nokogiri::XML(pq)
     qr.remove_namespaces!
     qr.xpath("//Flight").each do |f|
-      flight = Flight.new
+      flight = FlightCls.new
       flight.arrival_date_adjustment = getVal(f,"ArrivalDateAdjustment")
       flight.arrival_time = getVal(f,"ArrivalTime")
       flight.departure_time = getVal(f,"DepartureTime")
@@ -37,7 +37,7 @@ module Process
   end
 
   def Process.process_airport(a)
-    airport = Airport.new
+    airport = AirportCls.new
     airport.airport_code = getVal(a,"AirportCode")
     airport.city = getVal(a,"City")
     airport.country_code = getVal(a,"CountryCode")
@@ -52,7 +52,7 @@ module Process
 
 
   def Process.process_flight_leg(l)
-    leg = FlightLeg.new
+    leg = FlightLegCls.new
     leg.codeshare = getVal(l,"Codeshare")
     leg.arrival_date_adjustment = getVal(l,"ArrivalDateAdjustment")
     leg.arrival_terminal = getVal(l,"ArrivalTerminal")
@@ -77,7 +77,7 @@ module Process
   end                  
 
   def Process.process_carrier(c)
-    carrier = Carrier.new
+    carrier = CarrierCls.new
     carrier.airline_code = getVal(c,"AirlineCode")
     carrier.iata_code = getVal(c,"IATACode")
     carrier.icao_code = getVal(c,"ICAOCode")
@@ -86,7 +86,7 @@ module Process
   end
 
   def Process.process_equipment(e)
-    equipment = Equipment.new
+    equipment = EquipmentCls.new
     equipment.aircraft_type_code = getVal(e,"AircraftTypeCode")
     equipment.aircraft_type_name = getVal(e,"AircraftTypeName")
     equipment.jet = getVal(e,"Jet")

@@ -37,14 +37,21 @@ class MainSearchesController < ApplicationController
                     "origin.airportCode"=>origin_airportCode,
                     "destination.airportCode"=>destination_airportCode,
                     "flightNumber"=>flightNumber}
-      q = FlightStats.query(query_hash)
+      #q = FlightStats.query(query_hash)
       #q =FlightStats.query({"Service"=>"SchedulesConnectionsService","from"=>"2012-07-04T12:00","to"=>"2012-07-04T12:15","origin.airportCode"=>"CLE","destination.airportCode"=>"PIT"})
       #q = 
       #ap s
-      @query_results << Process::process_query(q,query_hash)
+      #@query_results << Process::process_query(q,query_hash)
     end
-    #@query_results << Process::process_query(File.read("PIT.xml"), Date.new(2012,9,9))
-    #@query_results << Process::process_query(File.read("EWR.xml"), Date.new(2012,9,9))
+    fake_query_hash = {"Service"=>"SchedulesConnectionsService",
+                  "from"=>"2012-09-09",
+                  "to"=>"2012-09-09",
+                  "origin.airportCode"=>"FAKEORIGIN",
+                  "destination.airportCode"=>"FAKEDEST",
+                  "flightNumber"=>"FAKEFLIGHTNUM"}
+    @query_results << Process::process_query(File.read("CLE.xml"), fake_query_hash)
+    @query_results << Process::process_query(File.read("BOS.xml"), fake_query_hash)
+    @query_results << Process::process_query(File.read("DCA.xml"), fake_query_hash)
     #ap @query_results.length
     render :create
   end
