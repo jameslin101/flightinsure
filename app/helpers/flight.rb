@@ -4,7 +4,8 @@ class Flight
     @flight_legs = []
   end
   
-  attr_accessor :arrival_date_adjustment,
+  attr_accessor :departure_date,
+                :arrival_date_adjustment,
                 :arrival_time,
                 :departure_time,
                 :departure_date_to,

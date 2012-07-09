@@ -1,80 +1,81 @@
 %div.span2
 %div.span10
-  %h1 
-    Flights from 
-    =@query_results.flights.first.departure_airport.airport_code
-    to
-    =@query_results.flights.first.arrival_airport.airport_code
+  -@query_results.each do |query_result|
+    %h1 
+      Flights from 
+      =query_result.query_hash["origin.airportCode"]
+      to
+      =query_result.query_hash["destination.airportCode"]
     
-  %table.table-bordered(width="100%")
-    %thead
-      %tr
-        %th Airline
-        %th Date
-        %th Departure Time
-        %th Arrival Time
-        %th Stops
-        %th Duration
-    %tbody
-      - @query_results.flights.each do |f|
+    %table.table-bordered(width="100%")
+      %thead
         %tr
-          %td 
-            - @airlines = []
-            - f.flight_legs.each do |al|
-              - ac = al.flight_id_carrier.airline_code.value
-              - if !@airlines.include?(ac)
-                - @airlines << ac
-            - if @airlines.length > 1 
-              Mulitple Airlines:
-              = p @airlines
-            - else
-              = @airlines[0]
-          %td 
-            =@flight_search.departure_time.strftime("%Y-%m-%d")
-          %td
-            =f.departure_time
-          %td 
-            =f.arrival_time
-          %td 
-            =f.flight_legs.length-1
-          %td 
-            =f.flight_duration_minutes
-        -f.flight_legs.each do |l|        
+          %th Airline
+          %th Date
+          %th Departure Time
+          %th Arrival Time
+          %th Stops
+          %th Duration
+      %tbody
+        - query_result.flights.each do |f|
           %tr
-            %td{:colspan=>6}
-              =l.flight_id_carrier.name
-              Flight number:
-              =l.flight_id_flight_number
-          %tr
-            %td(width="15%")
-            %td{:colspan=>"5", :width=>"85%"}
-              %table(width="100%")
-                %tr
-                  %td
-                    Flight duration:
-                  %td
-                    Departs:
-                    =l.departure_time
-                  %td
-                    =l.departure_airport.airport_code
-                  %td
-                    =l.departure_airport.name
-                  %td
-                    Terminal
-                    =l.departure_terminal
-                %tr
-                  %td
-                    =l.flight_duration_minutes
-                    mins
-                  %td
-                    Arrives:
-                    =l.arrival_time
-                  %td
-                    =l.arrival_airport.airport_code
-                  %td
-                    =l.arrival_airport.name
-                  %td
-                    Terminal
-                    =l.arrival_terminal                  
+            %td 
+              - airlines = []
+              - f.flight_legs.each do |al|
+                - ac = al.flight_id_carrier.airline_code.value
+                - if !airlines.include?(ac)
+                  - airlines << ac
+              - if airlines.length > 1 
+                Mulitple Airlines:
+                = p airlines
+              - else
+                = airlines[0]
+            %td               
+              =query_result.query_hash["from"]
+            %td
+              =f.departure_time
+            %td 
+              =f.arrival_time
+            %td 
+              =f.flight_legs.length-1
+            %td 
+              =f.flight_duration_minutes
+          -f.flight_legs.each do |l|        
+            %tr
+              %td{:colspan=>6}
+                =l.flight_id_carrier.name
+                Flight number:
+                =l.flight_id_flight_number
+            %tr
+              %td(width="15%")
+              %td{:colspan=>"5", :width=>"85%"}
+                %table(width="100%")
+                  %tr
+                    %td
+                      Flight duration:
+                    %td
+                      Departs:
+                      =l.departure_time
+                    %td
+                      =l.departure_airport.airport_code
+                    %td
+                      =l.departure_airport.name
+                    %td
+                      Terminal
+                      =l.departure_terminal
+                  %tr
+                    %td
+                      =l.flight_duration_minutes
+                      mins
+                    %td
+                      Arrives:
+                      =l.arrival_time
+                    %td
+                      =l.arrival_airport.airport_code
+                    %td
+                      =l.arrival_airport.name
+                    %td
+                      Terminal
+                      =l.arrival_terminal                  
         
 

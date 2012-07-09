@@ -4,6 +4,6 @@ class QueryResult
     @flights = []
   end
   
-  attr_accessor :flights
+  attr_accessor :flights, :query_hash
  
 end

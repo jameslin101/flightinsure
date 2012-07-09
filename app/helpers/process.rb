@@ -8,8 +8,9 @@ module Process
     end
   end
 
-  def Process.process_query(pq)
+  def Process.process_query(pq,query_hash)
     query_result = QueryResult.new
+    query_result.query_hash = query_hash
     qr = Nokogiri::XML(pq)
     qr.remove_namespaces!
     qr.xpath("//Flight").each do |f|
