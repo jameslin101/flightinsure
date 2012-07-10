@@ -15,7 +15,7 @@ class Airport < ActiveRecord::Base
     "wtf"
   end
 
-  belongs_to :airportable, :polymorphic => true
+  has_and_belongs_to_many :flight_legs
   
   
 end

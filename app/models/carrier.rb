@@ -5,6 +5,6 @@ class Carrier < ActiveRecord::Base
                   :icao_code,
                   :name
   
-  belongs_to :carrierable, :polymorphic => true
-  
+  has_and_belongs_to_many :flight_legs
+    
 end

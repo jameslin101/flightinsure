@@ -94,13 +94,13 @@ module Process
     leg.layover_duration_minutes = getVal(l,"LayoverDurationMinutes").to_i
     leg.wetlease_info = getVal(l,"WetleaseInfo")
     leg.flightid_flight_number = getVal(l.xpath("FlightId"),"FlightNumber").to_i
-    #leg.flightid_carrier = process_carrier(l.xpath("FlightId/Carrier"))
-    # if l.xpath("Operator").length > 0
-    #   leg.operator_flight_number = getVal(l.xpath("Operator"),"FlightNumber").to_i
-    #   leg.operator_carrier = process_carrier(l.xpath("Operator/Carrier"))
-    # end
-    # leg.departure_airport = process_airport(l.xpath("DepartureAirport"))
-    # leg.arrival_airport = process_airport(l.xpath("ArrivalAirport"))
+    leg.flightid_carrier = process_carrier(l.xpath("FlightId/Carrier"))
+    if l.xpath("Operator").length > 0
+      leg.operator_flight_number = getVal(l.xpath("Operator"),"FlightNumber").to_i
+      leg.operator_carrier = process_carrier(l.xpath("Operator/Carrier"))
+    end
+    leg.departure_airport = process_airport(l.xpath("DepartureAirport"))
+    leg.arrival_airport = process_airport(l.xpath("ArrivalAirport"))
     leg.equipment = process_equipment(l.xpath("Equipment"))
     leg
   end                  

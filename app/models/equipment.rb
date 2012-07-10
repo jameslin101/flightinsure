@@ -6,5 +6,5 @@ class Equipment < ActiveRecord::Base
                   :turboprop,
                   :wide_body
                   
-  has_many :flight_leg
+  has_and_belongs_to_many :flight_legs
 end
