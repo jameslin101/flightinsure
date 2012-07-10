@@ -1,0 +1,2 @@
+class Flightidcarrier < Carrier
+end
