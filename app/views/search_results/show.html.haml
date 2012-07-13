@@ -41,22 +41,21 @@
             =l.arrival_airport.airport_code
             =l.arrival_airport.city
           %td
-            %select{:name => "premium"}
-              - premium = [9,18,27]
+            %select{:name => "premium", :class => "premium"}
+              - premium = Payout::get_premiums
               - for p in premium
-                %option.premium 
+                %option
                   = p
           %td
-            .coverage{:id=>"c1_#{l.id}"}
-              5
+            .coverage#c1 {:data-id=>l.id.to_s}            
           %td
-            .coverage{:id=>"c2_#{l.id}"}
+            .coverage#c2 {:data-id=>l.id.to_s}
           %td
-            .coverage{:id=>"c3_#{l.id}"}
+            .coverage#c3 {:data-id=>l.id.to_s}
           %td
-            .coverage{:id=>"c4_#{l.id}"}
+            .coverage#c4 {:data-id=>l.id.to_s}
           %td
-            .coverage{:id=>"cc_#{l.id}"}
+            .coverage#cc {:data-id=>l.id.to_s}
   %p
     Your total coverage:
   %p

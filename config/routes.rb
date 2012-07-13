@@ -3,6 +3,9 @@ Front::Application.routes.draw do
   resources :main_searches
   resources :search_results
   match '/', :to => 'main_searches#new'
+  
+  match '/getpayouts', :to =>'search_results#getpayouts'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

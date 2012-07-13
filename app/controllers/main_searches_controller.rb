@@ -39,31 +39,31 @@ class MainSearchesController < ApplicationController
 
         #q = FlightStats.query(flightstats_query_hash)
 
-        q=FlightStats.query({"Service"=>"SchedulesConnectionsService","from"=>"2012-08-01T00:00","to"=>"2012-08-01T23:59","carriers[0].airlineCode"=>"AA","flightNumber"=>"1442","origin.airportCode"=>"LAX","destination.airportCode"=>"EWR","flightType"=>"NONSTOP"})
+        #q=FlightStats.query({"Service"=>"SchedulesConnectionsService","from"=>"2012-08-01T00:00","to"=>"2012-08-01T23:59","carriers[0].airlineCode"=>"AA","flightNumber"=>"1442","origin.airportCode"=>"LAX","destination.airportCode"=>"EWR","flightType"=>"NONSTOP"})
          
         #q = 
         #ap s
-        legs += Process::process_query(q,query_hash)
+        #legs += Process::process_query(q,query_hash)
       end
       fake_query_hash = {:departure_date => DateTime.new(2012,12,1),
                          :airline_code => "XX",
                          :flight_number => "99999"}
 
-      #legs += Process::process_query(File.read("SJC.xml"), fake_query_hash)
-      #legs += Process::process_query(File.read("BOS.xml"), fake_query_hash)
-      #legs += Process::process_query(File.read("CLE.xml"), fake_query_hash)
-      #legs += Process::process_query(File.read("DCA.xml"), fake_query_hash)
+      legs += Process::process_query(File.read("xml/SJC.xml"), fake_query_hash)
+      legs += Process::process_query(File.read("xml/BOS.xml"), fake_query_hash)
+      legs += Process::process_query(File.read("xml/CLE.xml"), fake_query_hash)
+      legs += Process::process_query(File.read("xml/DCA.xml"), fake_query_hash)
       #ap @query_results.length
       @search_result = SearchResult.new
-      legarray = []
+      # legarray = []
       legs.each do |l|
-        legstring = l.flightid_flight_number.to_s + l.departure_time.strftime("%I:%M%p") + 
-                    l.departure_airport.airport_code + l.arrival_airport.airport_code
-        ap legstring
-        if legarray.find(legstring) then
+      #   legstring = l.flightid_flight_number.to_s + l.departure_time.strftime("%I:%M%p") + 
+      #               l.departure_airport.airport_code + l.arrival_airport.airport_code
+      #   ap legstring
+      #   if !legarray.find(legstring) then
           @search_result.flight_legs << l
-          legarray << legstring
-        end
+      #     legarray << legstring
+      #   end
       end
       @search_result.save
   

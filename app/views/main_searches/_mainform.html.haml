@@ -6,8 +6,6 @@
           = msg
   = f.fields_for :flight_searches do |builder|
     = render 'flight_search_fields', f: builder    
-  =link_to_add_flight_searches "Add Flight", f, :flight_searches 
-  %a.btn.btn-large.add_flight_search
-  
-  <br>
-  = f.submit "Find my flights"
+  =link_to_add_flight_searches "Add Flight", f, :flight_searches   
+  <p><p>
+  = f.submit "Find my flights", :class=> 'btn btn-primary'
