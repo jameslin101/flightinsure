@@ -1,0 +1,65 @@
+=form_for @search_results do |f|
+  %h2
+    Please select your coverage:
+  %p
+  %table.table.table-striped.table-bordered.table-condensed
+    %thead
+      %tr
+        %th
+        %th
+          Your flights:
+        %th
+          Premium
+        %th
+          1 to 2 hrs
+        %th
+          2 to 3 hrs
+        %th
+          3 to 4 hrs
+        %th
+          4+ hrs
+        %th
+          Cancellation<br>Diversion
+    %tbody
+      -@search_results.flight_legs.each do |l|      
+        %tr
+          %td
+            %input{:type=>"checkbox", :id=>"premium#{l.id}", :checked=>1}
+          %td
+            =l.departure_time.strftime("%A, %b %d, %Y")
+            %br
+            =l.flightid_carrier.name
+            =l.flightid_flight_number
+            %br    
+            lv
+            =l.departure_time.strftime("%I:%M%p")
+            =l.departure_airport.airport_code
+            =l.departure_airport.city
+            %br
+            ar
+            =l.arrival_time.strftime("%I:%M%p")
+            =l.arrival_airport.airport_code
+            =l.arrival_airport.city
+          %td
+            %select{:name => "premium"}
+              - premium = [9,18,27]
+              - for p in premium
+                %option.premium 
+                  = p
+          %td
+            .coverage{:id=>"c1_#{l.id}"}
+              5
+          %td
+            .coverage{:id=>"c2_#{l.id}"}
+          %td
+            .coverage{:id=>"c3_#{l.id}"}
+          %td
+            .coverage{:id=>"c4_#{l.id}"}
+          %td
+            .coverage{:id=>"cc_#{l.id}"}
+  %p
+    Your total coverage:
+  %p
+    Your total premium:
+  =f.button "Submit"
+

@@ -15,31 +15,37 @@ module Process
   end
 
   def Process.process_query(pq,query_hash)
-    query_result = QueryResult.new
-    query_result.query_hash = query_hash
+    #query_result = QueryResult.new
+    #query_result.query_hash = query_hash
     qr = Nokogiri::XML(pq)
     qr.remove_namespaces!
-    qr.xpath("//Flight").each do |f|
-      flight = FlightCls.new
-      flight.arrival_date_adjustment = getVal(f,"ArrivalDateAdjustment")
-      flight.arrival_time = getVal(f,"ArrivalTime")
-      flight.departure_time = getVal(f,"DepartureTime")
-      flight.departure_date_to = getVal(f,"DepartureDateTo")
-      flight.departure_days_of_week = getVal(f,"DepartureDaysOfWeek")
-      flight.departure_time = getVal(f,"DepartureTime")
-      flight.distance_miles = getVal(f,"DistanceMiles")
-      flight.flight_duration_minutes = getVal(f,"FlightDurationMinutes")
-      flight.flight_type = getVal(f,"FlightType")
-      flight.layover_duration_minutes = getVal(f,"LayoverDurationMinutes")
-      flight.service_type = getVal(f,"ServiceType")
-      flight.departure_airport = process_airport(f.xpath("DepartureAirport"))
-      flight.arrival_airport = process_airport(f.xpath("ArrivalAirport"))
-      f.xpath("FlightLeg").each do |l|
-        flight.flight_legs << process_flight_leg(l,query_hash)
-      end
-      query_result.flights << flight
+    # qr.xpath("//Flight").each do |f|
+    #   flight = FlightCls.new
+    #   flight.arrival_date_adjustment = getVal(f,"ArrivalDateAdjustment")
+    #   flight.arrival_time = getVal(f,"ArrivalTime")
+    #   flight.departure_time = getVal(f,"DepartureTime")
+    #   flight.departure_date_to = getVal(f,"DepartureDateTo")
+    #   flight.departure_days_of_week = getVal(f,"DepartureDaysOfWeek")
+    #   flight.departure_time = getVal(f,"DepartureTime")
+    #   flight.distance_miles = getVal(f,"DistanceMiles")
+    #   flight.flight_duration_minutes = getVal(f,"FlightDurationMinutes")
+    #   flight.flight_type = getVal(f,"FlightType")
+    #   flight.layover_duration_minutes = getVal(f,"LayoverDurationMinutes")
+    #   flight.service_type = getVal(f,"ServiceType")
+    #   flight.departure_airport = process_airport(f.xpath("DepartureAirport"))
+    #   flight.arrival_airport = process_airport(f.xpath("ArrivalAirport"))
+    #   f.xpath("FlightLeg").each do |l|
+    #     flight.flight_legs << process_flight_leg(l,query_hash)
+    #   end
+    #   query_result.flights << flight
+    # end
+    # query_result
+    legs = []
+    qr.xpath("//FlightLeg").each do |l|
+      legs << process_flight_leg(l,query_hash)
     end
-    query_result
+    legs
+    
   end
 
   def Process.process_airport(a)
@@ -66,6 +72,8 @@ module Process
     leg.arrival_terminal = getVal(l,"ArrivalTerminal")
     
     o_date = query_hash[:departure_date]
+    ap query_hash
+    ap o_date
     
     a_hour = Time.parse(getVal(l,"ArrivalTime")).hour
     a_min = Time.parse(getVal(l,"ArrivalTime")).min    

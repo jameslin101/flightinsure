@@ -19,11 +19,14 @@ class FlightLeg < ActiveRecord::Base
                   :departure_airport,
                   :arrival_airport,
                   :equipment
+              
+                  
                   
   belongs_to :departure_airport, :class_name => "Airport"
   belongs_to :arrival_airport, :class_name => "Airport"
   belongs_to :flightid_carrier, :class_name => "Carrier"
   belongs_to :operator_carrier, :class_name => "Carrier"
   belongs_to :equipment
+  belongs_to :search_result
 
 end

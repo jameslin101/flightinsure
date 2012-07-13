@@ -1,15 +1,23 @@
 %fieldset
   %p
-    = f.label :flight_number, "Flight Number"
-    = f.text_field :flight_number
-  %p
-    = f.label :departure_airport, "Origin"
-    = f.text_field :departure_airport
-  %p
-    = f.label :arrival_airport, "Destination"
-    = f.text_field :arrival_airport
-  %p
-    = f.label :departure_time, "Departure Date"
-    = f.date_select :departure_time
-  = f.hidden_field :_destroy
-  = link_to "remove", '#', class:"remove_flight_search"
+  .row
+    .span-1
+      = f.label :origin, "Origin"
+      = f.text_field :origin
+    .span-1
+      = f.label :destination, "Destination"
+      = f.text_field :destination
+  .row
+    .span-1
+      = f.label :flight_number, "Flight Number"
+      = f.text_field :flight_number, :class => "flight_number"
+    .span-1
+      = f.label :departure_date, "Departure Date"
+      = f.text_field :departure_date, :class => :datepicker, :size => 10
+      = f.hidden_field :_destroy
+      = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search"
+      
+    -#.span-1
+    -#  %a.btn.btn-large.remove_flight_search
+    -#    %i.icon-remove
+

@@ -6,7 +6,18 @@
     = csrf_meta_tag
     = javascript_include_tag :application
 %body
-  %div.container-fluid
-    %div.row-fluid
-      = yield
+  .navbar
+    .navbar-inner
+      .container
+        .row
+          .span8
+            %a.title.brand(href="/") Delayo
+  .container
+    - if flash[:notice]
+      .alert.alert-success
+        = flash[:notice]
+    - if flash[:error]
+      .alert.alert-error
+        = flash[:error]
 
+    = yield

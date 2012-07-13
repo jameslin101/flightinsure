@@ -33,6 +33,7 @@ GEM
     arel (3.0.2)
     awesome_print (1.0.2)
     builder (3.0.0)
+    client_side_validations (3.1.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -66,6 +67,9 @@ GEM
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
+    jquery-ui-rails (1.0.0)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.3)
     launchy (2.0.5)
       addressable (~> 2.2.6)
@@ -157,11 +161,13 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  client_side_validations
   coffee-rails (~> 3.2.1)
   flightstats
   haml-rails
   heroku
   jquery-rails
+  jquery-ui-rails
   libxml-ruby
   nokogiri
   pg

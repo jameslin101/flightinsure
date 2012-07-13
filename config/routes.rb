@@ -1,6 +1,7 @@
 Front::Application.routes.draw do
   resources :flight_searches
   resources :main_searches
+  resources :search_results
   match '/', :to => 'main_searches#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
