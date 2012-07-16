@@ -24,7 +24,7 @@
       -@search_results.flight_legs.each do |l|      
         %tr
           %td
-            %input{:type=>"checkbox", :id=>"premium#{l.id}", :checked=>1}
+            %input.coverage_select{:type=>"checkbox", :id=>"premium#{l.id}", :checked=>1}
           %td
             =l.departure_time.strftime("%A, %b %d, %Y")
             %br
