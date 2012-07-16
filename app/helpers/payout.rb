@@ -1,38 +1,38 @@
 module Payout
   
   def Payout.get_premiums
-    [4,9,14,19,24]
+    ["$4.99","$9.99","$14.99","$19.99","$24.99"]
   end
   
   def Payout.get_payouts (premium)
-    puts "ASDFASFSADF:" + premium.to_s
     payouts = {"c1" => get_coverage(premium,"c1"),
-                "c2" => get_coverage(premium,"c2"),
-                "c3" => get_coverage(premium,"c3"),
-                "c4" => get_coverage(premium,"c4"),
-                "cc" => get_coverage(premium,"cc")
-                }
+               "c2" => get_coverage(premium,"c2"),
+               "c3" => get_coverage(premium,"c3"),
+               "c4" => get_coverage(premium,"c4"),
+               "cc" => get_coverage(premium,"cc")
+              }
   end
     
   
   def Payout.get_coverage(premium,delay_type)
+    p = premium.to_f
+    return_val = 0
     case delay_type
     when "c1"
-      (premium * 3).round(-1)
+      return_val = (p * 3).round(-1)
     when "c2"
-      (premium * 6).round(-1)
+      return_val = (p * 6).round(-1)
     when "c3"
-      (premium * 10).round(-1)
+      return_val = (p * 10).round(-1)
     when "c4"
-      (premium * 16).round(-1)
+      return_val = (p * 16).round(-1)
     when "cc"
-      (premium * 8).round(-1)
+      return_val = (p * 8).round(-1)
     end
+    "$" + return_val.to_s
+    
   end
   
 end
                 
                 
-            
-      
-#  ="0" ArrivalTime="21:30" DepartureDateFrom="2012-07-02" DepartureDateTo="2012-08-20" DepartureDaysOfWeek="123457" DepartureTime="18:30" DistanceMiles="718" FlightDurationMinutes="120" FlightType="NON_STOP" LayoverDurationMinutes="0" ServiceType="PASSENGER_ONLY">

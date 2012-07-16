@@ -47,18 +47,20 @@
                 %option
                   = p
           %td
-            .coverage#c1 {:data-id=>l.id.to_s}            
+            .c1 {:data-id=>l.id.to_s}            
           %td
-            .coverage#c2 {:data-id=>l.id.to_s}
+            .c2 {:data-id=>l.id.to_s}
           %td
-            .coverage#c3 {:data-id=>l.id.to_s}
+            .c3 {:data-id=>l.id.to_s}
           %td
-            .coverage#c4 {:data-id=>l.id.to_s}
+            .c4 {:data-id=>l.id.to_s}
           %td
-            .coverage#cc {:data-id=>l.id.to_s}
+            .cc {:data-id=>l.id.to_s}
   %p
     Your total coverage:
+    #total_coverage
   %p
     Your total premium:
+    #total_premium
   =f.button "Submit"
 

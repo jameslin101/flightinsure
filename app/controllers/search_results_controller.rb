@@ -8,7 +8,7 @@ class SearchResultsController < ApplicationController
     puts "HELLO?" +params.to_s
     p = 13
     if params[:premium]
-      p = params[:premium].to_i
+      p = params[:premium].delete("$").to_f
     end
     @payouts = Payout.get_payouts(p)
     respond_to do |format|

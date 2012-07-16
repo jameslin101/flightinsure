@@ -16,6 +16,7 @@ gem 'ruby-debug19'
 gem 'nokogiri'
 #gem 'devise'
 gem 'client_side_validations'
+gem 'money'
 
 # Gems used only for assets and not required
 # in production environments by default.
