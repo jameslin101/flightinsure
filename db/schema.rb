@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713013952) do
+ActiveRecord::Schema.define(:version => 20120717233433) do
 
   create_table "airports", :force => true do |t|
     t.string   "airport_code"
@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(:version => 20120713013952) do
     t.string   "type"
   end
 
+  create_table "coverages", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "equipment", :force => true do |t|
     t.string   "aircraft_type_code"
     t.string   "aircraft_type_name"
@@ -46,6 +51,19 @@ ActiveRecord::Schema.define(:version => 20120713013952) do
     t.boolean  "wide_body"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "flight_coverages", :force => true do |t|
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.float    "premium"
+    t.float    "c60_120"
+    t.float    "c120_180"
+    t.float    "c180_240"
+    t.float    "c240_or_more"
+    t.float    "cc"
+    t.integer  "coverage_id"
+    t.integer  "checked"
   end
 
   create_table "flight_legs", :force => true do |t|
@@ -69,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20120713013952) do
     t.integer  "operator_carrier_id"
     t.integer  "departure_airport_id"
     t.integer  "arrival_airport_id"
-    t.integer  "search_result_id"
+    t.integer  "flight_coverage_id"
   end
 
   create_table "flight_searches", :force => true do |t|
@@ -83,11 +101,6 @@ ActiveRecord::Schema.define(:version => 20120713013952) do
   end
 
   create_table "main_searches", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "search_results", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,0 +1,61 @@
+=form_for @coverage do |f| 
+  %h3
+    Please select your coverage:
+  %p
+  .row
+    %table.table.table-striped.table-bordered.span10
+      %thead
+        %tr
+          %th.span1
+          %th.span3
+            Your flights:
+          %th.span1
+            Premium
+          %th.span1
+            1 to 2 hrs
+          %th.span1
+            2 to 3 hrs
+          %th.span1
+            3 to 4 hrs
+          %th.span1
+            4+ hrs
+          %th.span1
+            Cancellation/<br>Diversion
+      %tbody
+        =f.fields_for :flight_coverages do |ff|
+          %tr
+            %td 
+              =ff.check_box :checked, {:class => "coverage_select", :id=>"premium#{ff.object.flight_leg.id}"}
+              .destroy_field
+                = ff.hidden_field :_destroy
+            %td
+              =render "flight_leg_print", :l=>ff.object.flight_leg
+            %td
+              - premiums = Payout::get_premiums.collect{|x| Array.new(["$"+x.to_s, x])}
+              = ff.select :premium, premiums, {}, :class=>"premium span2"
+            %td
+              .c1
+            %td
+              .c2 {:data-id=>l.id.to_s}
+            %td
+              .c3 {:data-id=>l.id.to_s}
+            %td
+              .c4 {:data-id=>l.id.to_s}
+            %td
+              .cc {:data-id=>l.id.to_s}
+
+  .row
+    .well.span2
+      %h4
+        Your total coverage:
+        %p
+        #total_coverage
+      %p
+      %h4
+        Your total premium:
+        %p
+        #total_premium
+  .row
+    %p
+    .span4
+      =f.submit "Checkout", :class => "checkout btn btn-primary"

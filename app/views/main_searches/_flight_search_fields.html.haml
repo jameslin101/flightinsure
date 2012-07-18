@@ -1,23 +1,25 @@
-%fieldset
-  %p
-  .row
-    .span-1
-      = f.label :origin, "Origin"
-      = f.text_field :origin
-    .span-1
-      = f.label :destination, "Destination"
-      = f.text_field :destination
-  .row
-    .span-1
-      = f.label :flight_number, "Flight Number"
-      = f.text_field :flight_number, :class => "flight_number"
-    .span-1
-      = f.label :departure_date, "Departure Date"
-      = f.text_field :departure_date, :class => :datepicker, :size => 10
-      = f.hidden_field :_destroy
-      = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search"
-      
-    -#.span-1
-    -#  %a.btn.btn-large.remove_flight_search
-    -#    %i.icon-remove
+.row
+  .well.span5
+    %fieldset
+      .row
+        .span2
+          = f.label :origin, "Origin Airport (ie. JFK)"
+          = f.text_field :origin, :class => "span2"
+        .span2
+          = f.label :destination, "Destination Airport (ie. LAX)"
+          = f.text_field :destination, :class => "span2"
+      .row
+        .span2
+          = f.label :flight_number, "Flight Number (ie. UA123)"
+          = f.text_field :flight_number, :class => "flight_number span2"
+          - if f.object.errors.get(:flight_number).length > 0 then
+            = f.object.errors.get(:flight_number) 
+        .span2
+          = f.label :departure_date, "Departure Date"
+          = f.text_field :departure_date, {:class => "datepicker span2", :size => 10}
+          - if f.object.errors.get(:departure_date).length > 0  then
+            = f.object.errors.get(:departure_date) 
+          = f.hidden_field :_destroy
+        .span1
+          = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search"
 

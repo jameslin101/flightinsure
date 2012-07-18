@@ -1,7 +1,7 @@
 module Payout
   
   def Payout.get_premiums
-    ["$4.99","$9.99","$14.99","$19.99","$24.99"]
+    [4.99,9.99,14.99,19.99,24.99]
   end
   
   def Payout.get_payouts (premium)
@@ -29,7 +29,7 @@ module Payout
     when "cc"
       return_val = (p * 8).round(-1)
     end
-    "$" + return_val.to_s
+    return_val
     
   end
   

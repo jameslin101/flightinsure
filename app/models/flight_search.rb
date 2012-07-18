@@ -7,9 +7,10 @@ class FlightSearch < ActiveRecord::Base
                   :origin,
                   :destination
   
-  #validates :flight_number, :format => { :with => /^[a-zA-Z]{2}\s?\d{2,4}$/, 
-  #                                       :message => "Must be 2 letters followed by 2-4 numbers, ie UA123"}
-
-  
+  # validates :flight_number, :format => { :with => /^[a-zA-Z]{2}\s?\d{2,4}$/, 
+  #                                        :message => "Invalid format"}
+  # validates :departure_date, :format => { :with => /^\d{2}\/\d{2}\/\d{4}$/,
+  #                                         :message => "Must be MM/DD/YYYY format"}
+  # 
 end
 

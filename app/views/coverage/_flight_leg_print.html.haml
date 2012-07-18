@@ -1,0 +1,14 @@
+=l.departure_time.strftime("%A, %b %d, %Y")
+%br
+=l.flightid_carrier.name
+=l.flightid_flight_number
+%br    
+lv
+=l.departure_time.strftime("%I:%M%p")
+=l.departure_airport.airport_code
+=l.departure_airport.city
+%br
+ar
+=l.arrival_time.strftime("%I:%M%p")
+=l.arrival_airport.airport_code
+=l.arrival_airport.city
