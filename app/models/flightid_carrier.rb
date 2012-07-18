@@ -1,2 +1,0 @@
-class Flightidcarrier < Carrier
-end

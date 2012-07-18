@@ -1,2 +1,0 @@
-class ArrivalAirport < Airport
-end
