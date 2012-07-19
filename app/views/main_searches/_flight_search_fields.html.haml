@@ -1,13 +1,14 @@
 .row
-  .well.span5
+  .well.span4
     %fieldset
       .row
         .span2
           = f.label :origin, "Origin Airport (ie. JFK)"
-          = f.text_field :origin, :class => "span2"
+          = f.text_field :origin, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}"
         .span2
           = f.label :destination, "Destination Airport (ie. LAX)"
-          = f.text_field :destination, :class => "span2"
+          = f.text_field :origin, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}"
+      
       .row
         .span2
           = f.label :flight_number, "Flight Number (ie. UA123)"
@@ -20,6 +21,8 @@
           - if f.object.errors.get(:departure_date).length > 0  then
             = f.object.errors.get(:departure_date) 
           = f.hidden_field :_destroy
-        .span1
-          = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search"
+      .row.pull-right
+        = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search align-right"
+      
+        
 

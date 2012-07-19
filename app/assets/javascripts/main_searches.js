@@ -1,4 +1,21 @@
 jQuery(function() {
+    
+  // var locateX = function() {
+  //   var wellPos = $(this).closest('.well').position()
+  //   var wellWidth = $(this).closest('.well').outerWidth()
+  //   alert($(this).position())
+  //   $(this).css({
+  //       position: "relative",
+  //       top: wellPos.top + "px",
+  //       left: (wellPos.left + wellWidth) + "px"
+  //   }).show();
+  // }
+  // 
+  // $(".remove_flight_search").each(locateX());
+  
+  //bootstap typeahead
+  $('.dropdown-toggle').dropdown()
+  
   $('form').on('click', '.remove_flight_search', function(event) {
     $(this).prev('input[type=hidden]').val('1');
     $(this).closest('.well').hide();
