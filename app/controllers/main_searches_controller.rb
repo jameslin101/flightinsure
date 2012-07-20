@@ -1,7 +1,7 @@
 class MainSearchesController < ApplicationController
   require "process"
   
-  TESTMODE = false
+  TESTMODE = true
   
   def new
     @main_search = MainSearch.new
@@ -19,7 +19,9 @@ class MainSearchesController < ApplicationController
            s.departure_date.blank? or
            s.origin.blank? or
            s.destination.blank?) then
-           s.destroy
+              ap s
+              puts "FLIGHT SEARCH DESTROYED"
+              s.destroy
         else
           ap s
           airline_code = s.flight_number.scan(/^[a-zA-Z]{2}/)[0].upcase

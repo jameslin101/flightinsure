@@ -3,21 +3,21 @@
     %fieldset
       .row
         .span2
-          = f.label :origin, "Origin Airport (ie. JFK)"
-          = f.text_field :origin, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}"
+          = f.label :origin, "Origin Airport"
+          = f.text_field :origin, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. JFK"
         .span2
-          = f.label :destination, "Destination Airport (ie. LAX)"
-          = f.text_field :origin, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}"
+          = f.label :destination, "Destination Airport"
+          = f.text_field :destination, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. LAX"
       
       .row
         .span2
-          = f.label :flight_number, "Flight Number (ie. UA123)"
-          = f.text_field :flight_number, :class => "flight_number span2"
+          = f.label :flight_number, "Flight Number"
+          = f.text_field :flight_number, :class => "flight_number span2", "placeholder" => "ie. UA123"
           - if f.object.errors.get(:flight_number).length > 0 then
             = f.object.errors.get(:flight_number) 
         .span2
           = f.label :departure_date, "Departure Date"
-          = f.text_field :departure_date, {:class => "datepicker span2", :size => 10}
+          = f.text_field :departure_date, :class => "datepicker span2","autocomplete"=>"off", "placeholder" => "MM/DD/YYYY"
           - if f.object.errors.get(:departure_date).length > 0  then
             = f.object.errors.get(:departure_date) 
           = f.hidden_field :_destroy

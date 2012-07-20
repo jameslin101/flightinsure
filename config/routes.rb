@@ -1,4 +1,6 @@
 Front::Application.routes.draw do
+  devise_for :users
+
   resources :flight_searches
   resources :main_searches
   resources :coverage

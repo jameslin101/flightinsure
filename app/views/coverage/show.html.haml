@@ -1,5 +1,5 @@
 %h3
-  Checkout
+  Please review your order:
 .row  
   %table.table.table-striped.table-bordered.span10
     %thead
@@ -35,11 +35,32 @@
             = number_to_currency(fc.c240_or_more)
           %td
             = number_to_currency(fc.cc)
-      %tr
-        %td
-          %h4
-            Total:
-            = number_to_currency(@coverage.total_premium)
-        %td{:colspan => 6, "border-right-width" => "0px", "border-bottom-width" => "0px"}
+.row
+  .span12
+    %h4
+      Your total:
+      = number_to_currency(@coverage.total_premium)
 %p
-%h3
+-if user_signed_in?
+  / -user.email
+-else
+  %h3
+    Sign up
+  /  =raise current_user.inspect
+  / = form_for(current_user) do |f|
+  /   = devise_error_messages! 
+  /   .div
+  /     = f.label :email 
+  /     = f.email_field :email
+  /   .div
+  /     = f.label :password 
+  /     <br />
+  /     = f.password_field :password
+  /   .div
+  /     = f.label :password_confirmation
+  /     <br />
+  /     = f.password_field :password_confirmation
+  / 
+  /   = f.submit "Sign up"
+
+  

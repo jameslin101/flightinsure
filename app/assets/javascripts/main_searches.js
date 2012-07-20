@@ -30,10 +30,8 @@ jQuery(function() {
     return event.preventDefault();
   });
 
-  $('form').on('hover', '.datepicker', function(event) {
- 	$(this).datepicker();
-    return event.preventDefault();
-
+	$(function() {
+      $( ".datepicker" ).datepicker();
+      return event.preventDefault();
   });
-	
 });
