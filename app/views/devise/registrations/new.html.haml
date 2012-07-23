@@ -1,0 +1,22 @@
+.row
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=> {:class => "form-horizontal"}) do |f|
+    .span4.well
+      = devise_error_messages!
+      %h3 Sign up
+      .control-group
+        = f.label :email, "E-mail:", :class=> "control-label"
+        .controls
+          = f.email_field :email, :class => "input-medium"
+      .control-group
+        = f.label :password, "Password:", :class=> "control-label"
+        .controls
+          = f.password_field :password, :class => "input-medium"
+      .control-group
+        = f.label :password_confirmation, "Confirm Password:", :class=> "control-label"
+        .controls
+          = f.password_field :password_confirmation, :class => "input-medium"        
+      .form-actions
+        =f.submit "Sign up",:class => "btn btn-primary"
+        <br><br>
+        = render "links"
+

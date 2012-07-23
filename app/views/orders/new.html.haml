@@ -1,8 +1,6 @@
 =form_for @order, {:html => {:class => "form-horizontal"}}  do |f|
-  %h3
-    Please review your order:
+  %h3 Please review your order:
   = render :partial => 'order_details'
-
   .row
     .span12
       = link_to "Edit Order", edit_coverage_path(@coverage)
@@ -12,33 +10,32 @@
   = f.hidden_field :stripe_card_token
   .row
     .span6.well
-      / =f.fields_for(current_user, :html => {:class => "well"}) do |u|    
-      /   %h4
-      /     Billing Info:
-      /     <p>
-      /   .control-group
-      /     = u.label :address_1, "Address Line 1:", :class=> "control-label"
-      /     .controls
-      /       = u.text_field :address_1
-      /   .control-group
-      /     = u.label :address_2, "Address Line 2:", :class=>"control-label"
-      /     .controls
-      /       = u.text_field :address_2
-      /   .control-group
-      /     = u.label :city, "City:", :class=>"control-label"
-      /     .controls
-      /       = u.text_field :city    
-      /   .control-group
-      /     = u.label :state, "State:", :class=>"control-label"
-      /     .controls
-      /       = u.select :state, FormData.state_abbr.values 
-      /   .control-group
-      /     = u.label :zip_code, "Zip Code:", :class=>"control-label"
-      /     .controls
-      /       = u.text_field :zip_code, :class=>"input-small"    
-      %h4
-        Payment Info:
-        <p>
+      =f.fields_for(@user, :html => {:class => "well"}) do |u|    
+        %h4
+          Billing Info:
+          <p>
+        .control-group
+          = u.label :address_1, "Address Line 1:", :class=> "control-label"
+          .controls
+            = u.text_field :address_1
+        .control-group
+          = u.label :address_2, "Address Line 2:", :class=>"control-label"
+          .controls
+            = u.text_field :address_2
+        .control-group
+          = u.label :city, "City:", :class=>"control-label"
+          .controls
+            = u.text_field :city    
+        .control-group
+          = u.label :state, "State:", :class=>"control-label"
+          .controls
+            = u.select :state, FormData.state_abbr.values 
+        .control-group
+          = u.label :zip_code, "Zip Code:", :class=>"control-label"
+          .controls
+            = u.text_field :zip_code, :class=>"input-small"    
+      / - if @order.stripe_card_token
+      %h4 Payment Info:<p>
       .control-group
         = label_tag :card_number, "Credit Card Number:", :class=>"control-label"
         .controls
