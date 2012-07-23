@@ -8,5 +8,4 @@ module ApplicationHelper
     link_to '<i class="icon-plus"></i>Add Flight'.html_safe, '#', class: "add_flight_search", data: {id: id, fields: fields.gsub("\n", "")}
   end
   
-
 end

@@ -1,10 +1,4 @@
 class CoverageController < ApplicationController
-  before_filter :authenticate_user!, except: [:edit, :update, :getpayouts]
-  
-  
-  def after_sign_in_path_for(resource)
-    edit_coverage_path(resource)
-  end
   
   def edit
     @coverage = Coverage.find(params[:id])
@@ -26,8 +20,8 @@ class CoverageController < ApplicationController
         f.cc = Payout.get_coverage(f.premium,"cc")
       end
       @coverage.save
-      
-      redirect_to @coverage
+      session[:coverage_id] = @coverage.id
+      redirect_to new_order_path
     else
       flash[:error] = ap(@service.errors.full_messages)
       render :action => "edit"
@@ -35,8 +29,9 @@ class CoverageController < ApplicationController
   end
   
   def show
-    
     @coverage = Coverage.find(params[:id])
+    session[:coverage_id] = @coverage.id
+    redirect_to new_order_path
   end
   
   def getpayouts

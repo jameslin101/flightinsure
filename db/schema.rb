@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719181718) do
+ActiveRecord::Schema.define(:version => 20120723040134) do
 
   create_table "airports", :force => true do |t|
     t.string   "airport_code"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(:version => 20120719181718) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "coverage_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.boolean  "paid"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -118,6 +126,18 @@ ActiveRecord::Schema.define(:version => 20120719181718) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "credit_card_number"
+    t.string   "expiration_month"
+    t.string   "expiration_year"
+    t.string   "card_security_code"
+    t.string   "stripe_customer_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

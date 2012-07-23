@@ -1,12 +1,13 @@
 Front::Application.routes.draw do
   devise_for :users
 
-  resources :flight_searches
+  resources :orders
   resources :main_searches
   resources :coverage
   root :to => 'main_searches#new'
   
   match '/getpayouts', :to =>'coverage#getpayouts'
+  match '/users/:id', :to => 'users#show', :as => :user
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

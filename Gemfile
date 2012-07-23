@@ -16,6 +16,7 @@ gem 'nokogiri'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'devise'
+gem 'stripe'
 #gem 'client_side_validations'
 #gem 'money'
 
