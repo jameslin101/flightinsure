@@ -69,6 +69,11 @@ class MainSearchesController < ApplicationController
         legs += Process::process_query(File.read("xml/DCA.xml"), fake_query_hash)
         #ap @query_results.length
       end
+      
+      if legs.count == 0 then
+        flash[:error] = "No flights found with your criteria. Please search again."
+        redirect_to root_path and return
+      end
         
       @coverage = Coverage.new
       legs.each do |l|
