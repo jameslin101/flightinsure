@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
                   :address_1, :address_2, :city, :state, :zip_code
   
   has_many :coverages
+  has_many :orders
   accepts_nested_attributes_for :coverages 
   # attr_accessible :title, :body
 

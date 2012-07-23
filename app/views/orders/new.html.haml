@@ -36,6 +36,11 @@
             = u.text_field :zip_code, :class=>"input-small"    
       / - if @order.stripe_card_token
       %h4 Payment Info:<p>
+      - if flash[:payment_error]
+        .row
+          .span6
+            .alert.alert-error
+              = flash[:payment_error]
       .control-group
         = label_tag :card_number, "Credit Card Number:", :class=>"control-label"
         .controls
