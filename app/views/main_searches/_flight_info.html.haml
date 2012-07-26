@@ -1,0 +1,21 @@
+.flight_search
+  %h5
+    Please enter your flight information
+  %p
+  %h4
+    = form_for @main_search do |f|
+      / - if @main_search.errors.any?
+      /   .error_messages
+      /     %h2
+      /       - @main_search.errors.full_messages.each do |msg|
+      /         = msg
+      = f.fields_for :flight_searches do |builder|
+        = render 'flight_search_fields', f: builder    
+      .row-fluid
+        .hidden_row
+      .row-fluid
+        .span6
+          =link_to_add_flight_searches "Add Flight", f, :flight_searches
+        .span6
+          .pull-right      
+            = f.submit "Find my flights", :class=> 'btn btn-success btn-large'

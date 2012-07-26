@@ -30,3 +30,36 @@ body {
 //
 // Example:
 // @linkColor: #ff0000;
+
+.btn-large {
+  padding: 16px 20px;
+  font-size: @baseFontSize + 6px;
+  line-height: normal;
+  .border-radius(5px);
+}
+
+.navbar {
+  // Fix for IE7's bad z-indexing so dropdowns don't appear below content that follows the navbar
+  margin-bottom: 0px;
+  z-index: 0;
+  
+}
+
+.navbar-inner {
+  position: relative;
+  right: 0;
+  left: 0;
+  background-color:white;
+  background-image:none;
+  margin-bottom: 0px;
+  box-shadow: 0 0 0 0;
+}
+.content {
+  background-color: rgba(255,255,255,.7);
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+

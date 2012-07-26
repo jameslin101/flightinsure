@@ -1,28 +1,29 @@
-.row
-  .well.span4
+.row-fluid
+  .well
     %fieldset
-      .row
-        .span2
+      .row-fluid
+        .span6
           = f.label :origin, "Origin Airport"
-          = f.text_field :origin, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. JFK"
-        .span2
+          = f.text_field :origin, "autocomplete"=>"off","class" => "span11","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. JFK"
+        .span6
           = f.label :destination, "Destination Airport"
-          = f.text_field :destination, :class=>"span2", "autocomplete"=>"off","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. LAX"
+          = f.text_field :destination, "autocomplete"=>"off","class" => "span11","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. LAX"
       
-      .row
-        .span2
+      .row-fluid
+        .span6
           = f.label :flight_number, "Flight Number"
-          = f.text_field :flight_number, :class => "flight_number span2", "placeholder" => "ie. UA123"
+          = f.text_field :flight_number, :class => "flight_number span11", "placeholder" => "ie. UA123"
           - if f.object.errors.get(:flight_number).length > 0 then
             = f.object.errors.get(:flight_number) 
-        .span2
+        .span6
           = f.label :departure_date, "Departure Date"
-          = f.text_field :departure_date, :class => "datepicker span2","autocomplete"=>"off", "placeholder" => "MM/DD/YYYY"
+          = f.text_field :departure_date, :class => "datepicker span11","autocomplete"=>"off", "placeholder" => "MM/DD/YYYY"
           - if f.object.errors.get(:departure_date).length > 0  then
             = f.object.errors.get(:departure_date) 
           = f.hidden_field :_destroy
-      .row.pull-right
-        = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search align-right"
+      .row-fluid
+        .pull-right
+          = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search align-right"
       
         
 

@@ -1,0 +1,70 @@
+// Place all the styles related to the FlightSearch controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.flight_search{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 10px 5px 10px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  -border-radius:5px;
+  background: #9f745d;
+  h5 {
+    text-align: center;
+    font-family:michroma;
+    color: purple;
+  }
+}
+
+.add_flight_search{
+  color: purple;
+}
+
+.infographic {
+  background-color : white;
+  border: 2px;
+  border-color: blue;
+  display:block;
+  text-align: center;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  -border-radius:5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding:0px;
+
+  #airline_ticket_img{ 
+    width:80%;
+  }
+  #checkbox_img{
+    width:40%;
+  }
+  #airplane_img{
+    width:60%;
+  }
+  #dollar_signs_img{
+    width:40%; 
+    position:relative;
+    top: 25%;
+  }
+  .text{
+    margin-top: -0px;
+    padding: 0px 10px 10px 10px;
+    font-family:michroma;
+    
+  }
+  h1 row.fluid {
+    position:relative;
+  }
+  h1 row.fluid .span3{
+    vertical-align:bottom;
+  }
+  .span12{
+    padding:10px;
+    font-family:michroma;
+    
+  }
+}
+

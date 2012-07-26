@@ -10,23 +10,25 @@
     %meta{:content => "", :name => "author"}    
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
-    = javascript_include_tag "https://js.stripe.com/v1/", "application"
-    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
-    
+    = javascript_include_tag "application"
+    = google_webfonts_link_tag :michroma => [400]
+    = yield :scripts
 %body
   .navbar.navbar-fixed-top
     .navbar-inner
       .container
         .row
-          .span8
+          .span4
             %a.title.brand(href="/") Delayo
-          .span4.user_header
-            - if user_signed_in?
-              = current_user.email
-              | 
-              = link_to "[Sign out]", destroy_user_session_path, :method => :delete
-            - else 
-              = link_to "[Sign in]", new_user_session_path
+          .span4.offset4
+            .pull-right
+              - if user_signed_in?
+                = current_user.email
+                .btn
+                  = link_to "Sign out", destroy_user_session_path, :method => :delete
+              - else 
+                .btn
+                  = link_to "[Sign in]", new_user_session_path
   .container
     .content
       .row

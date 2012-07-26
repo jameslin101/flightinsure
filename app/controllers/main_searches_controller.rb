@@ -1,7 +1,7 @@
 class MainSearchesController < ApplicationController
   require "process"
   
-  TESTMODE = false
+  TESTMODE = true
   
   def new
     @main_search = MainSearch.new

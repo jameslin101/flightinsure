@@ -25,13 +25,21 @@ jQuery(function() {
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
-    $(this).before($(this).data('fields').replace(regexp, time));
-	
+    $(this).closest('.row-fluid').prev().before($(this).data('fields').replace(regexp, time));
+   
     return event.preventDefault();
   });
+  // $('form').on('click', '.add_flight_search', function(event) {
+  //   var regexp, time;
+  //   time = new Date().getTime();
+  //   regexp = new RegExp($(this).data('id'), 'g');
+  //   $(this).before($(this).data('fields').replace(regexp, time));
+  //  
+  //   return event.preventDefault();
+  // });
 
 	$(function() {
-      $( ".datepicker" ).datepicker();
+      $( ".datepicker" ).datepicker({minDate:1,numberOfMonths:3});
       return event.preventDefault();
   });
 });
