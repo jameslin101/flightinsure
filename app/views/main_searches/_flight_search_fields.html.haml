@@ -2,28 +2,49 @@
   .well
     %fieldset
       .row-fluid
-        .span6
-          = f.label :origin, "Origin Airport"
-          = f.text_field :origin, "autocomplete"=>"off","class" => "span11","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. JFK"
-        .span6
-          = f.label :destination, "Destination Airport"
-          = f.text_field :destination, "autocomplete"=>"off","class" => "span11","data-provide" => "typeahead", "data-items"=>"4","data-source"=>"#{ Airport.pluck('airport_code')}", "placeholder" => "ie. LAX"
-      
+        .span6.search_field
+        
+          = f.label :origin, "From Airport",:class=>"search_label"
+          = f.text_field :origin, "autocomplete"=>"off",
+                                  "data-provide" => "typeahead", 
+                                  "class" => "span11", 
+                                  "data-items"=>"4",
+                                  "data-source"=>"#{ Airport.pluck('airport_code')}",
+                                  "placeholder" => "ie. JFK"
+          - if f.object.errors.get(:origin).length > 0 then
+            .control-group.error
+              = f.object.errors.get(:origin)[0]
+        .span6.search_field
+          = f.label :destination, "To Airport",:class=>"search_label"
+          = f.text_field :destination, "autocomplete"=>"off",
+                                       "data-provide" => "typeahead",
+                                       "class" => "span11", 
+                                       "data-items"=>"4",
+                                       "data-source"=>"#{ Airport.pluck('airport_code')}",
+                                       "placeholder" => "ie. LAX"
+          - if f.object.errors.get(:destination).length > 0 then
+            .control-group.error      
+              = f.object.errors.get(:destination)[0]
       .row-fluid
         .span6
-          = f.label :flight_number, "Flight Number"
-          = f.text_field :flight_number, :class => "flight_number span11", "placeholder" => "ie. UA123"
-          - if f.object.errors.get(:flight_number).length > 0 then
-            = f.object.errors.get(:flight_number) 
+          = f.label :flight_number, "Flight Number", :class=>"search_label"
+          = f.text_field :flight_number, :class => "flight_number span11",
+                                         "placeholder" => "ie. UA123"
+          .control-group.error          
+            - if f.object.errors.get(:flight_number).length > 0 then
+              = f.object.errors.get(:flight_number)[0]
         .span6
-          = f.label :departure_date, "Departure Date"
-          = f.text_field :departure_date, :class => "datepicker span11","autocomplete"=>"off", "placeholder" => "MM/DD/YYYY"
-          - if f.object.errors.get(:departure_date).length > 0  then
-            = f.object.errors.get(:departure_date) 
+          = f.label :departure_date, "Depart", :class=>"search_label"
+          = f.text_field :departure_date, :class => "datepicker span11",
+                                          "autocomplete"=>"off",
+                                          "placeholder" => "MM/DD/YYYY"
+          .control-group.error
+            - if f.object.errors.get(:departure_date).length > 0  then
+              = f.object.errors.get(:departure_date)[0]
           = f.hidden_field :_destroy
       .row-fluid
         .pull-right
-          = link_to '<i class="icon-remove"></i> Remove'.html_safe, '#', class:"remove_flight_search align-right"
+          = link_to '<i class="icon-remove-sign"></i> Remove'.html_safe, '#', class:"remove_flight_search align-right"
       
         
 

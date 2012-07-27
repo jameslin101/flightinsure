@@ -22,13 +22,18 @@
             %a.title.brand(href="/") Delayo
           .span4.offset4
             .pull-right
-              - if user_signed_in?
-                = current_user.email
-                .btn
-                  = link_to "Sign out", destroy_user_session_path, :method => :delete
-              - else 
-                .btn
-                  = link_to "Sign in", new_user_session_path
+              %ul.nav
+                - if user_signed_in?
+                  %li.divider_vertical                
+                    = link_to current_user.email, edit_user_registration_path
+                  %li.divider_vertical                
+                    = link_to "Sign out", destroy_user_session_path, :method => :delete
+                - else 
+                  %li.divider_vertical 
+                    = link_to ('Sign in'), new_user_session_path
+                  %li.divider_vertical 
+                    = link_to ('Sign up'), new_user_registration_path
+
   .container
     .content
       .row

@@ -2,19 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html {
+  background:transparent;
+}
+
+body { 
+    background: url(clouds_bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom:50px;
+}
+
+
+
 .flight_search{
   margin-top: 20px;
   margin-bottom: 20px;
-  padding: 10px 10px 5px 10px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-  -border-radius:5px;
+  padding: 10px 10px 0px 10px;
+//  -webkit-border-radius:5px;
+//  -moz-border-radius:5px;
+//  -border-radius:5px;
   background: #9f745d;
-  h5 {
+  .flight_search_box_label {
+    color: white; 
+    font-size: medium;
     text-align: center;
     font-family:michroma;
-    color: purple;
   }
+}
+
+.search_field {
+  border: 10px;
+}
+
+.search_label {
+  font-weight: bold;
+  font-size:medium;
 }
 
 .add_flight_search{
@@ -23,13 +48,13 @@
 
 .infographic {
   background-color : white;
-  border: 2px;
-  border-color: blue;
-  display:block;
+//  border: 2px;
+//  border-color: blue;
+//  display:block;
   text-align: center;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-  -border-radius:5px;
+//  -webkit-border-radius:5px;
+//  -moz-border-radius:5px;
+//  -border-radius:5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -46,8 +71,6 @@
   }
   #money_img{
     width:40%; 
-    position:relative;
-    top: 25%;
   }
   .text{
     margin-top: -0px;
