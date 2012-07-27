@@ -2,7 +2,9 @@
   = javascript_include_tag "https://js.stripe.com/v1/", "order/order.js"
   = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
 =form_for @order, {:html => {:class => "form-horizontal"}}  do |f|
-  %h3 Please review your order:
+  .box_label
+    Please review your order:
+  %br
   = render :partial => 'order_details'
   .row
     .span12

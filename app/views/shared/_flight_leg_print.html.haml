@@ -1,19 +1,44 @@
-.hidden-phone
-  =l.departure_time.strftime("%A, %b %d, %Y")
-  %br
-  =l.flightid_carrier.name
-  =l.flightid_flight_number
-  %br    
-  lv
-  =l.departure_time.strftime("%I:%M%p")
-  =l.departure_airport.airport_code
-  =l.departure_airport.city
-  %br
-  ar
-  =l.arrival_time.strftime("%I:%M%p")
-  =l.arrival_airport.airport_code
-  =l.arrival_airport.city
-.visible-phone.hidden-tablet.hidden-desktop
-  =l.departure_airport.airport_code
-  .icon-arrow-right
-  =l.arrival_airport.airport_code
+.display_flight
+  .hidden-phone
+    .flight_time
+      =l.departure_time.strftime("%A, %b %d, %Y")
+    %br
+    .flight_airport
+      =l.departure_airport.city
+      (
+      =l.departure_airport.airport_code
+      )
+    .icon-arrow-right    
+    .flight_airport
+      =l.arrival_airport.city
+      (
+      =l.arrival_airport.airport_code
+      )
+    %br
+    .flight_number
+      =l.flightid_carrier.name
+      (
+      =l.flightid_carrier.iata_code
+      )
+      =l.flightid_flight_number
+    %br
+    .dont_bold
+      Departs:
+    =l.departure_time.strftime("%I:%M %p")
+    %br
+    .dont_bold
+      Arrives:
+    =l.arrival_time.strftime("%I:%M %p")
+  .visible-phone.hidden-tablet.hidden-desktop
+    .flight_time
+      =l.departure_time.strftime("%b %d")
+    %br
+    .flight_number
+      =l.flightid_carrier.iata_code
+      =l.flightid_flight_number
+    %br
+    .flight_airport
+      =l.departure_airport.airport_code
+      .icon-arrow-right
+      =l.arrival_airport.airport_code
+    

@@ -1,8 +1,8 @@
 =content_for (:scripts) do
   = javascript_include_tag "/main_searches/main_searches.js"
 .row-fluid
-  .span9
-    %table.table.table-striped.table-bordered
+  .span12
+    %table.table.table-bordered
       %colgroup
         %col.span1
         %col.span3
@@ -12,20 +12,13 @@
         %col.span1
       %thead
         %tr
-          %th
-            Premium
-          %th
-            Your flights:
-          %th
-            1 to 2 hrs
-          %th
-            2 to 3 hrs
-          %th
-            3 to 4 hrs
-          %th
-            4+ hrs
-          %th
-            Cancel/<br>Divert
+          %th Premium
+          %th Your flights:
+          %th 1 to 2 hrs
+          %th 2 to 3 hrs
+          %th 3 to 4 hrs
+          %th 4+ hrs
+          %th Cancel/<br>Divert
       %tbody
         -@coverage.flight_coverages.each do |fc|
           %tr
@@ -34,15 +27,15 @@
             %td
               =render "shared/flight_leg_print", :l=>fc.flight_leg
             %td
-              = number_to_currency(fc.c60_120)
+              = number_to_currency(fc.c60_120, :precision=>0)
             %td
-              = number_to_currency(fc.c120_180)
+              = number_to_currency(fc.c120_180, :precision=>0)
             %td
-              = number_to_currency(fc.c180_240)
+              = number_to_currency(fc.c180_240, :precision=>0)
             %td
-              = number_to_currency(fc.c240_or_more)
+              = number_to_currency(fc.c240_or_more, :precision=>0)
             %td
-              = number_to_currency(fc.cc)
+              = number_to_currency(fc.cc, :precision=>0)
 .row
   .span12
     %h4

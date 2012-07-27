@@ -1,0 +1,47 @@
+.display_flight * {
+  text-align: left;
+  display:inline;
+  font-weight:bold;
+  font-size: small;
+  .dont_bold {
+    color:#6E788B;
+    font-weight:normal;
+  }
+  
+  .flight_time {
+    color:#D9940C;
+  }
+
+  .flight_number {
+    color:#4B698A;
+  
+  }
+} 
+
+.box_label {
+  color: black; 
+  font-size: large;
+  text-align: center;
+  font-family:michroma;
+}
+
+.checkout_label{
+  font-size: large;
+  color: grey;
+  display: inline;
+}
+
+#total_coverage{
+  display: inline;
+  font-size: large;
+  font-weight: bold;
+  color: black;
+}
+
+#total_premium{
+  display: inline;
+  font-size: large;
+  font-weight: bold;
+  color: black;
+}
+
