@@ -7,7 +7,7 @@
     %p
     .row-fluid
       .span12
-        %table.table.table-striped.table-bordered
+        %table.table.table-bordered
           %colgroup
             %col.span1
             %col.span3
@@ -20,10 +20,10 @@
               %th
               %th Your flights:
               %th Premium
-              %th 1 to 2 hrs
-              %th 2 to 3 hrs
-              %th 3 to 4 hrs
-              %th 4+ hrs
+              %th 1 to 2 hrs<br>Delay
+              %th 2 to 3 hrs<br>Delay
+              %th 3 to 4 hrs<br>Delay
+              %th 4+ hrs<br>Delay
               %th Cancel/<br>Divert
           %tbody
             =f.fields_for :flight_coverages do |ff|
