@@ -7,5 +7,17 @@ module ApplicationHelper
     end
     link_to '<i class="icon-plus-sign"></i> Add Flight'.html_safe, '#', class: "add_flight_search", data: {id: id, fields: fields.gsub("\n", "")}
   end
+
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
   
 end

@@ -1,22 +1,24 @@
-.row
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=> {:class => "form-horizontal"}) do |f|
-    .span5.well
-      =devise_error_messages!
-      %h3 Sign in
-      .control-group
-        = f.label :email, "E-mail:", :class=> "control-label"
-        .controls
-          = f.email_field :email, :class => "input-medium"
-      .control-group
-        = f.label :password, "Password:", :class=> "control-label"
-        .controls
-          = f.password_field :password, :class => "input-medium"
-      - if devise_mapping.rememberable?
-        .control-group
-          = f.label :remember_me, "Remember me:", :class => "control-label"
-          .controls
-            = f.check_box :remember_me
-        .form-actions
-          =f.submit "Sign in", :class => "btn btn-primary"
-          <br><br>
-          = render "links"
+= render "signup_or_signin", :resource => resource, :resource_name => resource_name, :form_type => "sign_in"
+
+/ .row
+/   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=> {:class => "form-horizontal"}) do |f|
+/     .span5.well
+/       =devise_error_messages!
+/       %h3 Sign in
+/       .control-group
+/         = f.label :email, "E-mail:", :class=> "control-label"
+/         .controls
+/           = f.email_field :email, :class => "input-medium"
+/       .control-group
+/         = f.label :password, "Password:", :class=> "control-label"
+/         .controls
+/           = f.password_field :password, :class => "input-medium"
+/       - if devise_mapping.rememberable?
+/         .control-group
+/           = f.label :remember_me, "Remember me:", :class => "control-label"
+/           .controls
+/             = f.check_box :remember_me
+/         .form-actions
+/           =f.submit "Sign in", :class => "btn btn-primary"
+/           <br><br>
+/           = render "links"
