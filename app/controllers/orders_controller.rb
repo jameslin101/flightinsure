@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
     if @order.save_with_payment
       @order.paid = true
       @order.save
+      UserMailer.order_confirmation(@user).deliver
       redirect_to @order
     else
       render :action => "new"

@@ -13,5 +13,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :coverages 
   # attr_accessible :title, :body
 
+  after_create :send_welcome_email
   
+  def send_welcome_email
+    UserMailer.user_confirmation(self).deliver
+  end
 end
