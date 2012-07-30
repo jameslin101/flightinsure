@@ -16,11 +16,11 @@ class FlightSearch < ActiveRecord::Base
                                           :allow_blank => true}
                                           
   validates :origin, :format => { :with => /^[a-zA-Z]{3}$/,
-                                  :message => "Must enter airport code, which are 3 letters.", 
+                                  :message => "Please enter 3 letter airport code.", 
                                   :allow_blank => true}
                                   
   validates :destination, :format => { :with => /^[a-zA-Z]{3}$/,
-                                       :message => "Must enter airport code, which are 3 letters.", 
+                                       :message => "Please enter 3 letter airport code.", 
                                        :allow_blank => true}
   
 end

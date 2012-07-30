@@ -20,6 +20,14 @@
           Billing Info:
           <p>
         .control-group
+          = u.label :first_name, "First Name:", :class=> "control-label"
+          .controls
+            = u.text_field :first_name
+        .control-group
+          = u.label :last_name, "Last Name:", :class=>"control-label"
+          .controls
+            = u.text_field :last_name
+        .control-group
           = u.label :address_1, "Address Line 1:", :class=> "control-label"
           .controls
             = u.text_field :address_1
@@ -57,14 +65,16 @@
       .control-group
         = label_tag :card_month, "Card Expiration:", :class=>"control-label"
         .controls        
-          = select_month nil, {:use_month_numbers => :true}, {name: nil, id: "card_month", "class" => "span1"}
+          = select_month nil, {:use_month_numbers => :true}, {name: nil, id: "card_month", "class" => "input-small"}
           = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, 
-                             {name: nil, id: "card_year", "class" => "span2"}
+                             {name: nil, id: "card_year", "class" => "input-small"}
       #stripe_error
         %noscript
           JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
       .form-actions
         =f.submit "Place Order", :class => "checkout btn btn-primary btn-large"
+        <br><br>
+        Your credit card will be charged.
       
 
 
