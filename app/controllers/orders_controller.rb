@@ -29,8 +29,8 @@ class OrdersController < ApplicationController
     @order.coverage_id = @coverage.id
     #raise params.inspect
     @user = current_user
-    #@order.user.update_attributes(params[:order][:user])
-    #@order.user.save
+    @order.user.update_attributes(params[:order][:user])
+    @order.user.save
     @order.stripe_card_token = params[:order][:stripe_card_token]
     if @order.save_with_payment
       @order.paid = true

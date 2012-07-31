@@ -13,6 +13,7 @@ class Order < ActiveRecord::Base
         customer = Stripe::Customer.create(description: user.email, card: stripe_card_token)
         customer_id = customer.id
         user.stripe_customer_token = customer.id
+        #user.update_attributes(params[:user])
         user.save
       #end
       n = Stripe::Charge.create(
