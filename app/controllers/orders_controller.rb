@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  require "paypal_adaptive"
+
   before_filter :authenticate_user!
   
   def new
