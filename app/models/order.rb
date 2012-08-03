@@ -23,6 +23,15 @@ class Order < ActiveRecord::Base
               :customer => customer_id
               )
     end
+    self.save
+  end
+ 
+  private 
+  
+  def confirm_payment
+    paid_time = DateTime.now
+    UserMailer.order_confirmation(user.email).deliver
+    self.save
   end
  
   # rescue Stripe::CardError => e

@@ -33,9 +33,7 @@ class OrdersController < ApplicationController
     #@order.user.save
     @order.stripe_card_token = params[:order][:stripe_card_token]
     if @order.save_with_payment
-      @order.paid = true
-      @order.save
-      UserMailer.order_confirmation(@user).deliver
+      @order.confirm_payment
       redirect_to @order
     else
       render :action => "new"
@@ -64,16 +62,16 @@ class OrdersController < ApplicationController
     
     pay_request = PaypalAdaptive::Request.new
     data = {
-      "returnUrl" => order_path(@order),
+      "returnUrl" => order_url(@order),
       "requestEnvelope" => {"errorLanguage" => "en_US"},
       "currencyCode" => "USD",
       "receiverList" =>
               { "receiver" => [
-                {"email" => "seller_1343843848_biz@gmail.com", "amount"=> 20}
+                {"email" => "seller_1343843848_biz@gmail.com", "amount"=> @coverage.total_premium}
               ]},
-      "cancelUrl" => "http://falling-moon-6787.herokuapp.com/orders/new",
+      "cancelUrl" => new_order_url,
       "actionType" => "PAY",
-      "ipnNotificationUrl" => "http://localhost:3000"
+      "ipnNotificationUrl" => paypal_payment_notification_url(@order.id)
     }
 
     #To do chained payments, just add a primary boolean flag:{“receiver”=> [{"email"=>"PRIMARY", "amount"=>"100.00", "primary" => true}, {"email"=>"OTHER", "amount"=>"75.00", "primary" => false}]}
@@ -85,17 +83,33 @@ class OrdersController < ApplicationController
         redirect_to pay_response.approve_paypal_payment_url
     else
         puts pay_response.errors.first['message']
-        raise pay_response.errors.inspect
-        redirect_to "/", notice: "Something went wrong. Please contact support."
+        redirect_to "/", notice: pay_response.errors.inspect
     end
   
   end
   
+  def payment_notification
+    ipn = PaypalAdaptive::IpnNotification.new
+    ipn.send_back(request.raw_post)
+    
+    if ipn.verified?
+      logger.info "IT WORKED"
+      if params["paymentExecStatus"] == "CREATED"  
+        @order = Order.find(params[:order_id])
+        @order.paypal_transactionid = params["payKey"]
+        @order.confirm_payment
+      end
+    else
+      logger.info "IT DIDNT WORK"
+    end
+
+  end 
   
   def edit
   end
   
   def update
   end
+  
   
 end
