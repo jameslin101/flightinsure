@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
 
   require "paypal_adaptive"
 
+  protect_from_forgery :except => [:payment_notification]
+
   before_filter :authenticate_user!
   
   def new
