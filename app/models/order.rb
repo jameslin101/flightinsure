@@ -24,8 +24,6 @@ class Order < ActiveRecord::Base
               )
     end
   end
-  
-
  
   # rescue Stripe::CardError => e
   #   logger.error "Stripe CardError: #{e.message}"

@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'stripe'
 gem 'google-webfonts'
+gem 'paypal_adaptive'
 #gem 'client_side_validations'
 #gem 'money'
 

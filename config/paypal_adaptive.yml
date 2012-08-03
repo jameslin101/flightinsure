@@ -1,0 +1,23 @@
+development:
+  environment: "sandbox"
+  username: "seller_1343843848_biz_api1.gmail.com"
+  password: "1343843877"
+  signature: "An5ns1Kso7MWUdW4ErQKJJJ4qi4-Aq4rFHewle-Mh00B5bpOTU9D3JbQ"
+  application_id: "APP-80W284485P519543T"
+  ssl_cert_file:
+
+test:
+  environment: "sandbox"
+  username: "sandbox_username"
+  password: "sandbox_password"
+  signature: "sandbox_signature"
+  application_id: "sandbox_app_id"
+  ssl_cert_file:
+
+production:
+  environment: "production"
+  username: "my_production_username"
+  password: "my_production_password"
+  signature: "my_production_signature"
+  application_id: "my_production_app_id"
+  ssl_cert_file:

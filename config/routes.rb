@@ -6,6 +6,8 @@ Front::Application.routes.draw do
   resources :coverage
   root :to => 'main_searches#new'
   
+  get "paypal/checkout", to: "orders#paypal_checkout"
+  
   match '/getpayouts', :to =>'coverage#getpayouts'
   match '/users/:id', :to => 'users#show', :as => :user
 
