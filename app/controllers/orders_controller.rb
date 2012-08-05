@@ -95,8 +95,10 @@ class OrdersController < ApplicationController
     ipn.send_back(request.raw_post)
     
     if ipn.verified?
-      logger.info "IT WORKED"
-      if params["paymentExecStatus"] == "CREATED"  
+      logger.info "IPN verified"
+      if params["status"] == "COMPLETED"
+        logger.info "Going through order confirm status"
+        logger.info @order.inspect
         @order = Order.find(params[:order_id])
         @order.paypal_transactionid = params["payKey"]
         @order.confirm_payment
