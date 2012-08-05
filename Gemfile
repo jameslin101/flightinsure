@@ -50,7 +50,7 @@ group :test, :development do
   #gem 'fuubar'
   #gem 'wirble'
   gem 'hirb'
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'debugger'
   
 end
 
