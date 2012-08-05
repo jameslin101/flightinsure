@@ -98,7 +98,7 @@ class OrdersController < ApplicationController
       logger.info "IPN verified"
       if params["status"] == "COMPLETED"
         logger.info "Going through order confirm status"
-        @order = Order.find(params[:order_id])
+        @order = Order.find(params["order_id"])
         @order.paypal_transactionid = params["payKey"]
         @order.confirm_payment
         logger.info @order.inspect
