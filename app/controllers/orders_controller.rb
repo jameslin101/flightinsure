@@ -112,7 +112,7 @@ class OrdersController < ApplicationController
         ptxn = PaypalTransaction.create(txn_hash)
         ptxn.paypal_ipn_id = ipn.id
         ptxn.save
-        logger.info pxtn.inspect
+        logger.info ptxn.inspect
       end
       ipn.save
       logger.info ipn.inspect
