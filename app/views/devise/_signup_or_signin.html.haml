@@ -7,20 +7,24 @@
     - newuser = User.new
     = form_for(newuser, :url => registration_path(newuser), :html=> {:class => "form-horizontal"}) do |f|
       .well
-        %h3 New user? Pain-free sign up: 
-        <br>
+        %h3 New user? 
+        %h3 Sign up with Facebook:<br><br> 
+        = link_to image_tag('fb_signin.png'), user_omniauth_authorize_path(:facebook), :class =>"fb_signup"
+        <br><br><br>
+        %h3 Sign up with E-mail:
         .control-group
           = f.label :email, "E-mail:", :class=> "control-label"
           .controls
             = f.email_field :email, :class => "input-medium"
-        .control-group
-          = f.label :password, "Password:", :class=> "control-label"
-          .controls
-            = f.password_field :password, :class => "input-medium"
-        .control-group
-          = f.label :password_confirmation, "Confirm Password:", :class=> "control-label"
-          .controls
-            = f.password_field :password_confirmation, :class => "input-medium"        
+        - if f.object.password_required?
+          .control-group
+            = f.label :password, "Password:", :class=> "control-label"
+            .controls
+              = f.password_field :password, :class => "input-medium"
+          .control-group
+            = f.label :password_confirmation, "Confirm Password:", :class=> "control-label"
+            .controls
+              = f.password_field :password_confirmation, :class => "input-medium"        
         .form-actions
           =f.submit "Sign up",:class => "btn btn-success btn-large"
   .span6

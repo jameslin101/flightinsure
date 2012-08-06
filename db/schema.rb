@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806053828) do
+ActiveRecord::Schema.define(:version => 20120806171801) do
 
   create_table "airports", :force => true do |t|
     t.string   "airport_code"
@@ -175,6 +175,8 @@ ActiveRecord::Schema.define(:version => 20120806053828) do
     t.string   "expiration_year"
     t.string   "card_security_code"
     t.string   "stripe_customer_token"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

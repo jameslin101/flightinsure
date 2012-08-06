@@ -19,6 +19,7 @@ gem 'devise'
 gem 'stripe'
 gem 'google-webfonts'
 gem 'paypal_adaptive'
+gem 'omniauth-facebook'
 #gem 'client_side_validations'
 #gem 'money'
 
