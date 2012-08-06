@@ -99,9 +99,9 @@ class OrdersController < ApplicationController
       if params["status"] == "COMPLETED"
         logger.info "Going through order confirm status"
         @order = Order.find(params["order_id"])
+        logger.info @order.inspect
         @order.paypal_transactionid = params["payKey"]
         @order.confirm_payment
-        logger.info @order.inspect
       end
     else
       logger.info "IT DIDNT WORK"
