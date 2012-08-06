@@ -112,12 +112,15 @@ class OrdersController < ApplicationController
         ptxn = PaypalTransaction.create(txn_hash)
         ptxn.paypal_ipn_id = ipn.id
         ptxn.save
+        logger.info pxtn.inspect
       end
       ipn.save
+      logger.info ipn.inspect
 
       if params["status"] == "COMPLETED"
         logger.info "Going through order confirm status"
         @order = Order.find(params["order_id"])
+        @order.paypal_ipn = ipn
         logger.info @order.inspect
         @order.confirm_payment
       end
