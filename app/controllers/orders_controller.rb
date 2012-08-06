@@ -95,16 +95,34 @@ class OrdersController < ApplicationController
     ipn.send_back(request.raw_post)
     
     if ipn.verified?
-      logger.info "IPN verified"
+      logger.info "Paypal IPN verified."
+      #push Paypal ipn values into models
+      ipn_hash = params.clone
+      ipn_hash.delete("order_id")
+      ipn_hash.delete("transaction")
+      ipn = PaypalIpn.create(ipn_hash)
+      txns_hash = params["transaction"]
+      txns_hash.each_value do |txn_hash|
+        txn_hash[".id_for_paypal_transaction"] = txn_hash[".id"]
+        txn_hash.delete(".id")
+        txn_hash.keys.each do |key| 
+          txn_hash[key.sub(".","")] = txn_hash[key]
+          txn_hash.delete(key)
+        end
+        ptxn = PaypalTransaction.create(txn_hash)
+        ptxn.paypal_ipn_id = ipn.id
+        ptxn.save
+      end
+      ipn.save
+
       if params["status"] == "COMPLETED"
         logger.info "Going through order confirm status"
         @order = Order.find(params["order_id"])
         logger.info @order.inspect
-        @order.paypal_transactionid = params["pay_key"]
         @order.confirm_payment
       end
     else
-      logger.info "IT DIDNT WORK"
+      logger.info "Waring: Paypal IPN not verified!"
     end
 
   end 

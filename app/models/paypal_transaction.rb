@@ -1,4 +1,7 @@
 class PaypalTransaction < ActiveRecord::Base
+
+  belongs_to :paypal_ipn
+
   attr_accessible :amount, 
                   :id, 
                   :id_for_sender_txn, 
@@ -10,5 +13,4 @@ class PaypalTransaction < ActiveRecord::Base
                   :status, 
                   :status_for_sender_txn
                   
-  belongs_to :paypal_ipn
 end

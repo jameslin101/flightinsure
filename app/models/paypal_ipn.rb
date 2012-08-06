@@ -1,4 +1,8 @@
 class PaypalIpn < ActiveRecord::Base
+
+  has_many :paypal_transactions
+  belongs_to :order
+
   attr_accessible :action_type, 
                   :cancel_url,
                   :charset,
@@ -15,8 +19,7 @@ class PaypalIpn < ActiveRecord::Base
                   :status, 
                   :test_ipn, 
                   :transaction_type, 
-                  :verify_sign
-                  
-  has_many :paypal_transactions
-  belongs_to :order
+                  :verify_sign,
+                  :paypal_transaction_attributes
+
 end
