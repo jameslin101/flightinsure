@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803192317) do
+ActiveRecord::Schema.define(:version => 20120806053828) do
 
   create_table "airports", :force => true do |t|
     t.string   "airport_code"
@@ -108,10 +108,46 @@ ActiveRecord::Schema.define(:version => 20120803192317) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.integer  "coverage_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.datetime "paid_time"
-    t.string   "paypal_transactionid"
+    t.integer  "paypal_ipn_id"
+  end
+
+  create_table "paypal_ipns", :force => true do |t|
+    t.string   "payment_request_date"
+    t.string   "return_url"
+    t.string   "fees_payer"
+    t.string   "ipn_notification_url"
+    t.string   "sender_email"
+    t.string   "verify_sign"
+    t.string   "test_ipn"
+    t.string   "cancel_url"
+    t.string   "pay_key"
+    t.string   "action_type"
+    t.string   "transaction_type"
+    t.string   "status"
+    t.string   "log_default_shipping_address_in_transaction"
+    t.string   "charset"
+    t.string   "notify_version"
+    t.string   "reverse_all_parallel_payments_on_error"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  create_table "paypal_transactions", :force => true do |t|
+    t.string   "id_for_sender_txn"
+    t.string   "receiver"
+    t.string   "is_primary_receiver"
+    t.string   "status"
+    t.string   "paymentType"
+    t.string   "status_for_sender_txn"
+    t.string   "pending_reason"
+    t.string   "amount"
+    t.integer  "paypal_ipn_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "id_for_paypal_transaction"
   end
 
   create_table "users", :force => true do |t|
