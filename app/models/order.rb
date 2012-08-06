@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :coverage
-  belongs_to :paypal_ipns
+  belongs_to :paypal_ipn
   accepts_nested_attributes_for :user, :reject_if => lambda { |u| u[:last_name].blank?}
   attr_accessible :user_attributes, :paypal_ipn_attributes
   
