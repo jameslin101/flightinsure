@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
     end
     @order.coverage_id = @coverage.id
     @user = current_user
+    raise @order.inspect
     @order.save
     
     pay_request = PaypalAdaptive::Request.new

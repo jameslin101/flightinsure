@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   attr_accessor :stripe_card_token
   
   def save_with_stripe_payment
-    if valid?
+    if valid? 
       customer_id = user.stripe_customer_token
       #if customer_id.blank?
         customer = Stripe::Customer.create(description: user.email, card: stripe_card_token)
