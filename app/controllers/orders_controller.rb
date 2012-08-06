@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     #@order.user.update_attributes(params[:order][:user])
     #@order.user.save
     @order.stripe_card_token = params[:order][:stripe_card_token]
-    if @order.save_with_payment
+    if @order.save_with_strip_payment
       @order.confirm_payment
       redirect_to @order
     else
@@ -100,7 +100,7 @@ class OrdersController < ApplicationController
         logger.info "Going through order confirm status"
         @order = Order.find(params["order_id"])
         logger.info @order.inspect
-        @order.paypal_transactionid = params["payKey"]
+        @order.paypal_transactionid = params["pay_key"]
         @order.confirm_payment
       end
     else

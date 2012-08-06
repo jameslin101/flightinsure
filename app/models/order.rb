@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   
   attr_accessor :stripe_card_token
   
-  def save_with_payment
+  def save_with_stripe_payment
     if valid?
       customer_id = user.stripe_customer_token
       #if customer_id.blank?
@@ -27,7 +27,7 @@ class Order < ActiveRecord::Base
   end
    
   def confirm_payment
-    paid_time = DateTime.now
+    self.paid_time = DateTime.now
     UserMailer.order_confirmation(user).deliver
     self.save
   end
