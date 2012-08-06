@@ -3,7 +3,7 @@ class PaypalTransaction < ActiveRecord::Base
   belongs_to :paypal_ipn
 
   attr_accessible :amount, 
-                  :id, 
+                  :id_for_paypal_transaction, 
                   :id_for_sender_txn, 
                   :is_primary_receiver, 
                   :paymentType, 
