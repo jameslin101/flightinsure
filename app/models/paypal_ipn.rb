@@ -1,7 +1,6 @@
 class PaypalIpn < ActiveRecord::Base
 
   has_many :paypal_transactions
-  belongs_to :order
 
   attr_accessible :action_type, 
                   :cancel_url,
