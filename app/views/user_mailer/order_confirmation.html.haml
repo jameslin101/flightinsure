@@ -1,6 +1,6 @@
 - logger.info "Sending confirmation email to #{@user.inspect}"
 = @user.first_name
 Thank you for your order  
--if @user.paypal_transactionid
+-if @order.paypal_transactionid
   Paypal transaction id:
-  =@user.paypal_transactionid
+  =@order.paypal_transactionid

@@ -28,7 +28,7 @@ class Order < ActiveRecord::Base
    
   def confirm_payment
     self.paid_time = DateTime.now
-    UserMailer.order_confirmation(user).deliver
+    UserMailer.order_confirmation(self).deliver
     self.save
   end
  
