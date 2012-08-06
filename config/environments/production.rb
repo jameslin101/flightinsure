@@ -53,6 +53,16 @@ Front::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
+  # Change mail delvery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "stylefuze.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "james@stylefuze.com",
+    password: "1Mahustla",
+  }
   # Enable threaded mode
   # config.threadsafe!
 

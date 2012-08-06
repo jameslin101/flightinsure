@@ -17,7 +17,7 @@ Front::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # Change mail delvery to either :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
@@ -27,6 +27,8 @@ Front::Application.configure do
     user_name: "james@stylefuze.com",
     password: "1Mahustla",
   }
+  
+  config.action_mailer.perform_deliveries = true #try to force sending in development 
 
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: "localhost:3000"}
